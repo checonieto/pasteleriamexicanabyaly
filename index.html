@@ -49,18 +49,20 @@
             box-shadow: 0 30px 60px -10px rgba(170, 130, 150, 0.5);
         }
 
-        /* Header Section with Logo */
+        /* Header Section with Logo and Language Toggle */
         .header-top {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px 20px 10px;
+            padding: 20px 30px 10px;
             background: rgba(255, 244, 250, 0.5);
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .logo-container {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             overflow: hidden;
             border: 4px solid #f5daea;
@@ -80,6 +82,56 @@
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fdeef7;
+            padding: 8px 16px;
+            border-radius: 40px;
+            border: 2px solid #f5dae9;
+            box-shadow: 0 4px 10px rgba(170, 130, 150, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lang-toggle:hover {
+            transform: scale(1.05);
+            border-color: #cc9eb3;
+            box-shadow: 0 8px 15px #b28bb0;
+            background: #fff0fa;
+        }
+
+        .lang-toggle i {
+            font-size: 1.2rem;
+            color: #b28bb0;
+            transition: color 0.3s;
+        }
+
+        .lang-toggle:hover i {
+            color: #8f6b8d;
+        }
+
+        .lang-text {
+            font-weight: 600;
+            color: #6d4f68;
+            font-size: 1rem;
+        }
+
+        .lang-toggle.active {
+            background: #d4b2c7;
+            border-color: #b28bb0;
+        }
+
+        .lang-toggle.active .lang-text {
+            color: #fcf0f8;
+        }
+
+        .lang-toggle.active i {
+            color: #fcf0f8;
         }
 
         /* Hero Section with Logo integration */
@@ -572,39 +624,48 @@
             .card { max-width: 100%; }
             .gallery h2 { font-size: 2.2rem; }
             .special-card { max-width: 100%; }
-            .logo-container { width: 90px; height: 90px; }
+            .logo-container { width: 80px; height: 80px; }
+            .header-top { padding: 15px; }
+            .lang-toggle { padding: 6px 12px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Logo Section -->
+        <!-- Header with Logo and Language Toggle -->
         <div class="header-top">
             <div class="logo-container">
                 <img src="logopma.jpg" alt="Pasteleria Mexicana By Aly Logo">
+            </div>
+            
+            <!-- Language Toggle Button -->
+            <div class="lang-toggle" id="langToggle">
+                <i class="fas fa-globe"></i>
+                <span class="lang-text" id="langText">ESPAÑOL</span>
+                <i class="fas fa-toggle-off" id="toggleIcon"></i>
             </div>
         </div>
 
         <!-- Hero Section -->
         <div class="hero">
             <h1>Pasteleria Mexicana By Aly</h1>
-            <p>✨ Endulzando tus momentos especiales desde 1999✨</p>
+            <p id="heroTagline">✨ Endulzando tus momentos especiales desde 1999 ✨</p>
         </div>
 
-        <!-- Info Cards with Business Details - REDUCED SIZE -->
+        <!-- Info Cards with Business Details -->
         <div class="info-section">
             <!-- Contact Card -->
             <div class="card">
                 <i class="fas fa-phone-alt"></i>
-                <h3>Llámanos</h3>
+                <h3 id="contactTitle">Llámamos</h3>
                 <p class="highlight"><a href="tel:+19183780909" style="color: inherit; text-decoration: none;">(918) 378-0909</a></p>
-                <p>¡Ordena hoy!</p>
+                <p id="contactText">¡Ordena hoy!</p>
             </div>
 
             <!-- Location Card -->
             <div class="card">
                 <i class="fas fa-map-marker-alt"></i>
-                <h3>Visítanos</h3>
+                <h3 id="locationTitle">Visítanos</h3>
                 <p>7942 E 21st St</p>
                 <p class="highlight">Tulsa, OK</p>
             </div>
@@ -612,43 +673,43 @@
             <!-- Specialty Card -->
             <div class="card">
                 <i class="fas fa-birthday-cake"></i>
-                <h3>Especialidad</h3>
-                <p>Bodas • Quinceañera</p>
-                <p>Cumpleaños • Celebraciones</p>
+                <h3 id="specialtyTitle">Especialidad</h3>
+                <p id="specialtyText1">Bodas • Quinceañera</p>
+                <p id="specialtyText2">Cumpleaños • Celebraciones</p>
             </div>
 
             <!-- Hours Card -->
             <div class="card hours-card">
                 <i class="fas fa-clock"></i>
-                <h3>Horario</h3>
+                <h3 id="hoursTitle">Horario</h3>
                 <div class="hours-grid">
-                    <span class="day">Sáb:</span> <span class="time">11am–6pm</span>
-                    <span class="day">Dom:</span> <span class="time">1:30–2:30pm</span>
-                    <span class="day">Lun:</span> <span class="closed">Cerrado</span>
-                    <span class="day">Mar:</span> <span class="time">12–4:30pm</span>
-                    <span class="day">Mié:</span> <span class="time">12–5pm</span>
-                    <span class="day">Jue:</span> <span class="time">12–5pm</span>
-                    <span class="day">Vie:</span> <span class="time">11am–6pm</span>
+                    <span class="day" id="sat">Sáb:</span> <span class="time">11am–6pm</span>
+                    <span class="day" id="sun">Dom:</span> <span class="time">1:30–2:30pm</span>
+                    <span class="day" id="mon">Lun:</span> <span class="closed" id="closed">Cerrado</span>
+                    <span class="day" id="tue">Mar:</span> <span class="time">12–4:30pm</span>
+                    <span class="day" id="wed">Mié:</span> <span class="time">12–5pm</span>
+                    <span class="day" id="thu">Jue:</span> <span class="time">12–5pm</span>
+                    <span class="day" id="fri">Vie:</span> <span class="time">11am–6pm</span>
                 </div>
-                <button class="btn-order" onclick="alert('📞 Llama al (918) 378-0909 para tu pedido. ¡Gracias!')">
-                    <i class="fas fa-cake"></i> ORDENAR
+                <button class="btn-order" onclick="alert(document.getElementById('langToggle').classList.contains('active') ? '📞 Call (918) 378-0909 for your order. Thank you!' : '📞 Llama al (918) 378-0909 para tu pedido. ¡Gracias!')">
+                    <i class="fas fa-cake"></i> <span id="orderBtn">ORDENAR</span>
                 </button>
             </div>
         </div>
 
-        <!-- NEW SPECIALS SECTION - Valentine & Easter Cards -->
+        <!-- SPECIALS SECTION - Valentine & Easter Cards -->
         <div class="specials-section">
             <!-- Valentine's Day Special Card -->
             <div class="special-card valentine">
                 <div class="special-icon">
                     <i class="fas fa-heart"></i>
                 </div>
-                <h3>San Valentín</h3>
-                <p>Pasteles románticos y postres especiales para tu amor</p>
+                <h3 id="valentineTitle">San Valentín</h3>
+                <p id="valentineText">Pasteles románticos y postres especiales para tu amor</p>
                 <div class="special-offer">💕 15% OFF 💕</div>
-                <p><small>Pedidos antes del 10 Feb</small></p>
-                <button class="btn-special" onclick="alert('¡Reserva tu pastel de San Valentín! Llama al (918) 378-0909')">
-                    RESERVAR <i class="fas fa-arrow-right"></i>
+                <p><small id="valentineSmall">Pedidos antes del 10 Feb</small></p>
+                <button class="btn-special" onclick="alert(document.getElementById('langToggle').classList.contains('active') ? 'Reserve your Valentine\'s cake! Call (918) 378-0909' : '¡Reserva tu pastel de San Valentín! Llama al (918) 378-0909')">
+                    <span id="valentineBtn">RESERVAR</span> <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
 
@@ -657,19 +718,19 @@
                 <div class="special-icon">
                     <i class="fas fa-egg"></i>
                 </div>
-                <h3>Pascua 2025</h3>
-                <p>Pasteles de conejitos, huevos de chocolate y más</p>
-                <div class="special-offer">🐰 Próximamente 🐰</div>
-                <p><small>Disponible en Marzo</small></p>
-                <button class="btn-special" onclick="alert('¡Apúntate para recibir novedades de Pascua!')">
-                    PRÓXIMAMENTE <i class="fas fa-bell"></i>
+                <h3 id="easterTitle">Pascua 2025</h3>
+                <p id="easterText">Pasteles de conejitos, huevos de chocolate y más</p>
+                <div class="special-offer" id="easterOffer">🐰 Próximamente 🐰</div>
+                <p><small id="easterSmall">Disponible en Marzo</small></p>
+                <button class="btn-special" onclick="alert(document.getElementById('langToggle').classList.contains('active') ? 'Sign up for Easter updates!' : '¡Apúntate para recibir novedades de Pascua!')">
+                    <span id="easterBtn">PRÓXIMAMENTE</span> <i class="fas fa-bell"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Carousel for "Nuestras creaciones" - WITH YOUR 10 NEW IMAGES -->
+        <!-- Carousel for "Nuestras creaciones" -->
         <div class="gallery">
-            <h2>Nuestras creaciones</h2>
+            <h2 id="galleryTitle">Nuestras creaciones</h2>
             
             <!-- Swiper Container -->
             <div class="swiper mySwiper">
@@ -728,7 +789,7 @@
                             <img src="pastel-boda3.jpg" alt="Pastel de Boda 3">
                         </div>
                     </div>
-                    <!-- Slide 10 - Hero Image (duplicated as extra cake) -->
+                    <!-- Slide 10 - Hero Image -->
                     <div class="swiper-slide">
                         <div class="carousel-item">
                             <img src="hero-bakery.jpg" alt="Pastel Especial">
@@ -744,7 +805,7 @@
                 <div class="swiper-pagination"></div>
             </div>
             
-            <p style="margin-top: 30px; font-style: italic; color: #8a6a81;">✨ ¡Cakes and treats for any special occasion! ✨</p>
+            <p style="margin-top: 30px; font-style: italic; color: #8a6a81;" id="galleryTagline">✨ ¡Cakes and treats for any special occasion! ✨</p>
         </div>
 
         <!-- Social Media & Footer -->
@@ -756,9 +817,9 @@
             </div>
             <div class="footer-note">
                 <p>Pasteleria Mexicana By Aly Bakery • Tulsa, OK<br>
-                <i class="fas fa-cake"></i> Siguenos para ver nuestras creaciones del día <i class="fas fa-cake"></i><br>
-                <small>© 2025 - Hecho con <i class="fas fa-heart" style="color: #f09bc0;"></i> para la comunidad</small><br>
-                <small>* Visita nuestras redes para ver más fotos reales.</small>
+                <i class="fas fa-cake"></i> <span id="footerFollow">Síguenos para ver nuestras creaciones del día</span> <i class="fas fa-cake"></i><br>
+                <small>© 2025 - <span id="footerHeart">Hecho con</span> <i class="fas fa-heart" style="color: #f09bc0;"></i> <span id="footerCommunity">para la comunidad</span></small><br>
+                <small><span id="footerVisit">Visita nuestras redes para ver más fotos reales</span></small>
             </div>
         </div>
     </div>
@@ -766,8 +827,153 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
-    <!-- Initialize Swiper -->
+    <!-- Language Toggle and Swiper Initialization -->
     <script>
+        // Language translations
+        const translations = {
+            spanish: {
+                toggleText: 'ENGLISH',
+                toggleIcon: 'fa-toggle-off',
+                heroTagline: '✨ Endulzando tus momentos especiales desde 1999 ✨',
+                contactTitle: 'Llámanos',
+                contactText: '¡Ordena hoy!',
+                locationTitle: 'Visítanos',
+                specialtyTitle: 'Especialidad',
+                specialtyText1: 'Bodas • Quinceañera',
+                specialtyText2: 'Cumpleaños • Celebraciones',
+                hoursTitle: 'Horario',
+                sat: 'Sáb:',
+                sun: 'Dom:',
+                mon: 'Lun:',
+                tue: 'Mar:',
+                wed: 'Mié:',
+                thu: 'Jue:',
+                fri: 'Vie:',
+                closed: 'Cerrado',
+                orderBtn: 'ORDENAR',
+                valentineTitle: 'San Valentín',
+                valentineText: 'Pasteles románticos y postres especiales para tu amor',
+                valentineSmall: 'Pedidos antes del 10 Feb',
+                valentineBtn: 'RESERVAR',
+                easterTitle: 'Pascua 2025',
+                easterText: 'Pasteles de conejitos, huevos de chocolate y más',
+                easterOffer: '🐰 Próximamente 🐰',
+                easterSmall: 'Disponible en Marzo',
+                easterBtn: 'PRÓXIMAMENTE',
+                galleryTitle: 'Nuestras creaciones',
+                galleryTagline: '✨ ¡Pasteles y postres para cualquier ocasión especial! ✨',
+                footerFollow: 'Síguenos para ver nuestras creaciones del día',
+                footerHeart: 'Hecho con',
+                footerCommunity: 'para la comunidad',
+                footerVisit: 'Visita nuestras redes para ver más fotos reales'
+            },
+            english: {
+                toggleText: 'SPANISH',
+                toggleIcon: 'fa-toggle-on',
+                heroTagline: '✨ Sweetening your special moments since 1999 ✨',
+                contactTitle: 'Call Us',
+                contactText: 'Order today!',
+                locationTitle: 'Visit Us',
+                specialtyTitle: 'Specialty',
+                specialtyText1: 'Weddings • Quinceañera',
+                specialtyText2: 'Birthdays • Celebrations',
+                hoursTitle: 'Hours',
+                sat: 'Sat:',
+                sun: 'Sun:',
+                mon: 'Mon:',
+                tue: 'Tue:',
+                wed: 'Wed:',
+                thu: 'Thu:',
+                fri: 'Fri:',
+                closed: 'Closed',
+                orderBtn: 'ORDER',
+                valentineTitle: 'Valentine\'s Day',
+                valentineText: 'Romantic cakes and special desserts for your love',
+                valentineSmall: 'Orders before Feb 10',
+                valentineBtn: 'RESERVE',
+                easterTitle: 'Easter 2025',
+                easterText: 'Bunny cakes, chocolate eggs and more',
+                easterOffer: '🐰 Coming Soon 🐰',
+                easterSmall: 'Available in March',
+                easterBtn: 'COMING SOON',
+                galleryTitle: 'Our Creations',
+                galleryTagline: '✨ Cakes and treats for any special occasion! ✨',
+                footerFollow: 'Follow us to see our daily creations',
+                footerHeart: 'Made with',
+                footerCommunity: 'for the community',
+                footerVisit: 'Visit our social media for more real photos'
+            }
+        };
+
+        // Current language state (false = Spanish, true = English)
+        let isEnglish = false;
+
+        // Function to update all text based on language
+        function updateLanguage() {
+            const lang = isEnglish ? 'english' : 'spanish';
+            const t = translations[lang];
+            
+            // Update toggle button
+            document.getElementById('langText').textContent = t.toggleText;
+            const toggleIcon = document.getElementById('toggleIcon');
+            toggleIcon.className = `fas ${t.toggleIcon}`;
+            
+            // Update hero
+            document.getElementById('heroTagline').textContent = t.heroTagline;
+            
+            // Update cards
+            document.getElementById('contactTitle').textContent = t.contactTitle;
+            document.getElementById('contactText').textContent = t.contactText;
+            document.getElementById('locationTitle').textContent = t.locationTitle;
+            document.getElementById('specialtyTitle').textContent = t.specialtyTitle;
+            document.getElementById('specialtyText1').textContent = t.specialtyText1;
+            document.getElementById('specialtyText2').textContent = t.specialtyText2;
+            document.getElementById('hoursTitle').textContent = t.hoursTitle;
+            
+            // Update hours days
+            document.getElementById('sat').textContent = t.sat;
+            document.getElementById('sun').textContent = t.sun;
+            document.getElementById('mon').textContent = t.mon;
+            document.getElementById('tue').textContent = t.tue;
+            document.getElementById('wed').textContent = t.wed;
+            document.getElementById('thu').textContent = t.thu;
+            document.getElementById('fri').textContent = t.fri;
+            document.getElementById('closed').textContent = t.closed;
+            
+            // Update order button
+            document.getElementById('orderBtn').textContent = t.orderBtn;
+            
+            // Update specials
+            document.getElementById('valentineTitle').textContent = t.valentineTitle;
+            document.getElementById('valentineText').textContent = t.valentineText;
+            document.getElementById('valentineSmall').textContent = t.valentineSmall;
+            document.getElementById('valentineBtn').textContent = t.valentineBtn;
+            
+            document.getElementById('easterTitle').textContent = t.easterTitle;
+            document.getElementById('easterText').textContent = t.easterText;
+            document.getElementById('easterOffer').textContent = t.easterOffer;
+            document.getElementById('easterSmall').textContent = t.easterSmall;
+            document.getElementById('easterBtn').textContent = t.easterBtn;
+            
+            // Update gallery
+            document.getElementById('galleryTitle').textContent = t.galleryTitle;
+            document.getElementById('galleryTagline').textContent = t.galleryTagline;
+            
+            // Update footer
+            document.getElementById('footerFollow').textContent = t.footerFollow;
+            document.getElementById('footerHeart').textContent = t.footerHeart;
+            document.getElementById('footerCommunity').textContent = t.footerCommunity;
+            document.getElementById('footerVisit').textContent = t.footerVisit;
+        }
+
+        // Toggle language on button click
+        document.getElementById('langToggle').addEventListener('click', function() {
+            isEnglish = !isEnglish;
+            this.classList.toggle('active', isEnglish);
+            updateLanguage();
+        });
+
+        // Initialize Swiper
         document.addEventListener('DOMContentLoaded', function() {
             var swiper = new Swiper('.mySwiper', {
                 slidesPerView: 1,
