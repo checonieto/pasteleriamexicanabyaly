@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasteleria Mexicana By Aly | Tulsa</title>
+    <!-- Fancy Fonts from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS for Carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f0f5 0%, #e8d1e0 100%);
+            color: #5e4b5c;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background-color: rgba(255, 244, 250, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50px 50px 30px 30px;
+            box-shadow: 0 25px 50px -12px rgba(150, 120, 140, 0.3);
+            overflow: hidden;
+            border: 1px solid rgba(230, 200, 220, 0.5);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 30px 60px -10px rgba(170, 130, 150, 0.5);
+        }
+
+        /* Header Section with Logo */
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 20px 10px;
+            background: rgba(255, 244, 250, 0.5);
+        }
+        
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #f5daea;
+            box-shadow: 0 8px 20px rgba(170, 130, 150, 0.3);
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05) rotate(3deg);
+            border-color: #d9b8c4;
+            box-shadow: 0 12px 25px rgba(150, 110, 140, 0.5);
+        }
+        
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Hero Section with Logo integration */
+        .hero {
+            background: linear-gradient(rgba(255, 230, 245, 0.3), rgba(230, 200, 220, 0.5)), url('hero-bakery.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            padding: 40px 40px 60px;
+            text-align: center;
+            color: #4a3b4a;
+            position: relative;
+            border-bottom: 5px solid #d9b8c4;
+            margin-top: -20px;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(255, 220, 240, 0.8);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+            color: #614c5c;
+        }
+
+        .hero h1:hover {
+            transform: scale(1.02) rotate(-0.5deg);
+            color: #80687a;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 4px rgba(255, 240, 250, 0.8);
+            background: rgba(230, 200, 220, 0.5);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 220, 240, 0.6);
+            color: #4f3f4c;
+        }
+
+        /* Business Info Cards - REDUCED SIZE */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 30px 20px;
+            background: rgba(250, 235, 245, 0.6);
+        }
+
+        .card {
+            background: #fdeef7;
+            flex: 1 1 160px;
+            max-width: 200px;
+            padding: 18px 12px;
+            border-radius: 30px 15px 30px 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px -6px rgba(160, 130, 150, 0.2);
+            border: 2px solid #f5dae9;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) rotate(0.5deg);
+            border-color: #cc9eb3;
+            box-shadow: 0 15px 25px -6px #b28bb0;
+            background: #fff0fa;
+        }
+
+        .card i {
+            font-size: 2.2rem;
+            color: #b28bb0;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover i {
+            color: #8f6b8d;
+            animation: bounce 0.4s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: #6d4f68;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: #7a6075;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .card .highlight {
+            font-weight: 600;
+            color: #b28bb0;
+            font-size: 1rem;
+        }
+
+        /* Hours Card - slightly wider */
+        .card.hours-card {
+            max-width: 240px;
+            background: linear-gradient(145deg, #fbe9f2, #fadff0);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 5px 8px;
+            text-align: left;
+            margin: 8px 0;
+            font-size: 0.8rem;
+        }
+
+        .hours-grid .day {
+            font-weight: 600;
+            color: #8a6a81;
+        }
+
+        .hours-grid .time {
+            color: #b28bb0;
+        }
+
+        .hours-grid .closed {
+            color: #c08a9c;
+            font-weight: 600;
+        }
+
+        .btn-order {
+            background: #d4b2c7;
+            color: #4f3f4c;
+            border: none;
+            padding: 8px 18px;
+            font-size: 0.95rem;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 10px #d4b2c7;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-order:hover {
+            background: #c29bbc;
+            color: #fcf0f8;
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px #b28bb0;
+            border-color: #f5daea;
+        }
+
+        .btn-order:active {
+            transform: scale(0.96);
+            background: #a882a5;
+        }
+
+        /* Special Cards - Valentine & Easter */
+        .specials-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 20px 30px;
+            background: rgba(250, 235, 245, 0.4);
+        }
+
+        .special-card {
+            background: #fff0f7;
+            flex: 1 1 220px;
+            max-width: 260px;
+            padding: 20px;
+            border-radius: 40px 15px 40px 15px;
+            text-align: center;
+            box-shadow: 0 12px 25px -10px rgba(180, 130, 160, 0.25);
+            border: 3px solid #fad4e6;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .special-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ffd9e8, #ffe4f0, #ffd0e6);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: -1;
+        }
+
+        .special-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #e6b0cc;
+            box-shadow: 0 20px 30px -8px #c49ab8;
+        }
+
+        .special-card:hover::before {
+            opacity: 0.4;
+        }
+
+        .special-card.valentine {
+            background: #ffe4f0;
+            border-color: #fac0d6;
+        }
+
+        .special-card.easter {
+            background: #f0f2e3;
+            border-color: #d4e0b0;
+        }
+
+        .special-icon {
+            font-size: 2.8rem;
+            margin-bottom: 8px;
+        }
+
+        .valentine .special-icon {
+            color: #e485b0;
+        }
+
+        .easter .special-icon {
+            color: #b5c97e;
+        }
+
+        .special-card h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .valentine h3 {
+            color: #c45d8b;
+        }
+
+        .easter h3 {
+            color: #7f9f5a;
+        }
+
+        .special-card p {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: #6d5468;
+        }
+
+        .special-offer {
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: white;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 40px;
+            margin: 8px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+
+        .valentine .special-offer {
+            background: #ffe4f0;
+            color: #c45d8b;
+            border: 1px solid #f5b0cc;
+        }
+
+        .easter .special-offer {
+            background: #f0f5e3;
+            color: #7f9f5a;
+            border: 1px solid #c5d99b;
+        }
+
+        .btn-special {
+            background: transparent;
+            border: 2px solid;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 5px;
+        }
+
+        .valentine .btn-special {
+            border-color: #e485b0;
+            color: #c45d8b;
+        }
+
+        .valentine .btn-special:hover {
+            background: #e485b0;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 12px #e485b0;
+        }
+
+        .easter .btn-special {
+            border-color: #b5c97e;
+            color: #7f9f5a;
+        }
+
+        .easter .btn-special:hover {
+            background: #b5c97e;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 5px 12px #b5c97e;
+        }
+
+        /* Gallery / Carousel Section */
+        .gallery {
+            padding: 30px 30px 50px;
+            text-align: center;
+        }
+
+        .gallery h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.6rem;
+            color: #80687a;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .gallery h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #d9b8c4;
+            border-radius: 5px;
+            transition: width 0.4s;
+        }
+
+        .gallery h2:hover::after {
+            width: 120px;
+            background: #c29bbc;
+        }
+
+        /* Swiper Carousel Styles */
+        .swiper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px 10px 35px !important;
+            overflow: hidden;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .carousel-item {
+            width: 240px;
+            height: 220px;
+            border-radius: 50px 15px 50px 15px;
+            overflow: hidden;
+            box-shadow: 0 12px 22px -8px rgba(150, 110, 140, 0.3);
+            border: 4px solid #f5daea;
+            transition: all 0.4s ease;
+        }
+
+        .carousel-item:hover {
+            transform: scale(1.05);
+            border-color: #d9b8c4;
+            box-shadow: 0 18px 30px -5px #b28bb0;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+
+        .carousel-item:hover img {
+            transform: scale(1.15);
+        }
+
+        /* Swiper Navigation */
+        .swiper-button-next, .swiper-button-prev {
+            color: #b28bb0 !important;
+            background: rgba(255, 240, 250, 0.7);
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(150, 120, 140, 0.2);
+            transition: all 0.3s;
+        }
+
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background: #f5daea;
+            color: #80687a !important;
+            transform: scale(1.1);
+        }
+
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.2rem !important;
+            font-weight: bold;
+        }
+
+        .swiper-pagination-bullet {
+            background: #d9b8c4 !important;
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: #b28bb0 !important;
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .swiper-pagination-bullet:hover {
+            background: #c29bbc !important;
+            opacity: 0.9;
+        }
+
+        /* Social & Footer */
+        .social-section {
+            background: #ead3e0;
+            color: #4f3f4c;
+            padding: 25px;
+            text-align: center;
+            border-top: 3px solid #d9b8c4;
+        }
+
+        .social-links {
+            margin-bottom: 12px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            font-size: 1.8rem;
+            color: #7a6075;
+            margin: 0 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #b28bb0;
+            transform: translateY(-6px) scale(1.12);
+            text-shadow: 0 4px 8px #f0c4dc;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-note a {
+            color: #b28bb0;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-note a:hover {
+            text-decoration: underline;
+            color: #80687a;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.2rem; }
+            .info-section { padding: 20px 10px; }
+            .card { max-width: 100%; }
+            .gallery h2 { font-size: 2.2rem; }
+            .special-card { max-width: 100%; }
+            .logo-container { width: 90px; height: 90px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Section -->
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="logopma.jpg" alt="Pasteleria Mexicana By Aly Logo">
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Pasteleria Mexicana By Aly</h1>
+            <p>✨ Endulzando tus momentos especiales ✨</p>
+        </div>
+
+        <!-- Info Cards with Business Details - REDUCED SIZE -->
+        <div class="info-section">
+            <!-- Contact Card -->
+            <div class="card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Llámanos</h3>
+                <p class="highlight"><a href="tel:+19183780909" style="color: inherit; text-decoration: none;">(918) 378-0909</a></p>
+                <p>¡Ordena hoy!</p>
+            </div>
+
+            <!-- Location Card -->
+            <div class="card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Visítanos</h3>
+                <p>7942 E 21st St</p>
+                <p class="highlight">Tulsa, OK</p>
+            </div>
+
+            <!-- Specialty Card -->
+            <div class="card">
+                <i class="fas fa-birthday-cake"></i>
+                <h3>Especialidad</h3>
+                <p>Tres Leches • Flanes</p>
+                <p>Gelatinas • Galletas</p>
+            </div>
+
+            <!-- Hours Card -->
+            <div class="card hours-card">
+                <i class="fas fa-clock"></i>
+                <h3>Horario</h3>
+                <div class="hours-grid">
+                    <span class="day">Sáb:</span> <span class="time">11am–6pm</span>
+                    <span class="day">Dom:</span> <span class="time">1:30–2:30pm</span>
+                    <span class="day">Lun:</span> <span class="closed">Cerrado</span>
+                    <span class="day">Mar:</span> <span class="time">12–4:30pm</span>
+                    <span class="day">Mié:</span> <span class="time">12–5pm</span>
+                    <span class="day">Jue:</span> <span class="time">12–5pm</span>
+                    <span class="day">Vie:</span> <span class="time">11am–6pm</span>
+                </div>
+                <button class="btn-order" onclick="alert('📞 Llama al (918) 378-0909 para tu pedido. ¡Gracias!')">
+                    <i class="fas fa-cake"></i> ORDENAR
+                </button>
+            </div>
+        </div>
+
+        <!-- NEW SPECIALS SECTION - Valentine & Easter Cards -->
+        <div class="specials-section">
+            <!-- Valentine's Day Special Card -->
+            <div class="special-card valentine">
+                <div class="special-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>San Valentín</h3>
+                <p>Pasteles románticos y postres especiales para tu amor</p>
+                <div class="special-offer">💕 15% OFF 💕</div>
+                <p><small>Pedidos antes del 10 Feb</small></p>
+                <button class="btn-special" onclick="alert('¡Reserva tu pastel de San Valentín! Llama al (918) 378-0909')">
+                    RESERVAR <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Easter Special Card -->
+            <div class="special-card easter">
+                <div class="special-icon">
+                    <i class="fas fa-egg"></i>
+                </div>
+                <h3>Pascua 2025</h3>
+                <p>Pasteles de conejitos, huevos de chocolate y más</p>
+                <div class="special-offer">🐰 Próximamente 🐰</div>
+                <p><small>Disponible en Marzo</small></p>
+                <button class="btn-special" onclick="alert('¡Apúntate para recibir novedades de Pascua!')">
+                    PRÓXIMAMENTE <i class="fas fa-bell"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Carousel for "Nuestras creaciones" - WITH YOUR 10 NEW IMAGES -->
+        <div class="gallery">
+            <h2>Nuestras creaciones</h2>
+            
+            <!-- Swiper Container -->
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 - Quinceañera Cake -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="pastel-quince.jpg" alt="Pastel de Quinceañera">
+                        </div>
+                    </div>
+                    <!-- Slide 2 - Birthday Cake 1 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="pastel-cumpleanos.jpg" alt="Pastel de Cumpleaños">
+                        </div>
+                    </div>
+                    <!-- Slide 3 - Birthday Cake 2 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="pastel-cumpleanos2.jpg" alt="Pastel de Cumpleaños 2">
+                        </div>
+                    </div>
+                    <!-- Slide 4 - Infantile Cake 1 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="infantil1.jpg" alt="Pastel Infantil 1">
+                        </div>
+                    </div>
+                    <!-- Slide 5 - Infantile Cake 2 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="infantil2.jpg" alt="Pastel Infantil 2">
+                        </div>
+                    </div>
+                    <!-- Slide 6 - Infantile Cake 3 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="infantil3.jpg" alt="Pastel Infantil 3">
+                        </div>
+                    </div>
+                    <!-- Slide 7 - Wedding Cake 1 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="pastel-boda.jpg" alt="Pastel de Boda 1">
+                        </div>
+                    </div>
+                    <!-- Slide 8 - Wedding Cake 2 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="pastel-boda2.jpg" alt="Pastel de Boda 2">
+                        </div>
+                    </div>
+                    <!-- Slide 9 - Wedding Cake 3 -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="pastel-boda3.jpg" alt="Pastel de Boda 3">
+                        </div>
+                    </div>
+                    <!-- Slide 10 - Hero Image (duplicated as extra cake) -->
+                    <div class="swiper-slide">
+                        <div class="carousel-item">
+                            <img src="hero-bakery.jpg" alt="Pastel Especial">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                
+                <!-- Pagination dots -->
+                <div class="swiper-pagination"></div>
+            </div>
+            
+            <p style="margin-top: 30px; font-style: italic; color: #8a6a81;">✨ ¡Cakes and treats for any special occasion! ✨</p>
+        </div>
+
+        <!-- Social Media & Footer -->
+        <div class="social-section">
+            <div class="social-links">
+                <a href="https://facebook.com/PasteleriaMexicanabyAly" target="_blank" class="social-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/Cakesbyalyg" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@Cakesbyaly" target="_blank" class="social-icon" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="footer-note">
+                <p>Pasteleria Mexicana By Aly Bakery • Tulsa, OK<br>
+                <i class="fas fa-cake"></i> Siguenos para ver nuestras creaciones del día <i class="fas fa-cake"></i><br>
+                <small>© 2025 - Hecho con <i class="fas fa-heart" style="color: #f09bc0;"></i> para la comunidad</small><br>
+                <small>* Visita nuestras redes para ver más fotos reales.</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Initialize Swiper -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper('.mySwiper', {
+                slidesPerView: 1,
+                spaceBetween: 15,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    480: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 20,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 25,
+                    },
+                },
+            });
+        });
+        
+        console.log("✨ Pasteleria Mexicana By Aly - ¡Pronto sitio oficial! ✨");
+    </script>
+</body>
+</html>
